@@ -5,13 +5,14 @@ use clap::{Parser, Subcommand};
 #[command(propagate_version = true)]
 pub struct Cli {
     #[command(subcommand)]
-    pub command: Commands,
+    pub subcmd: Subcommands,
 }
 
 #[derive(Subcommand, Debug)]
-pub enum Commands {
-    Add { message: String },
-    List { id: u32 },
+pub enum Subcommands {
+    Add { message: String, date: String },
+    Show { id: u32 },
     Update { id: u32 },
     Delete { id: u32 },
+    List,
 }

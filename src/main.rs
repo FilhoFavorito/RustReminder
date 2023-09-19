@@ -1,6 +1,7 @@
 mod cli;
+//use chrono::NaiveDateTime;
 use clap::Parser;
-use cli::{Cli, Commands};
+use cli::{Cli, Subcommands};
 
 #[derive(Debug)]
 struct Task {
@@ -17,13 +18,13 @@ impl Task {
 }
 
 fn main() {
-    let task = Task::new("comprar pão", "20/08/2023");
     let args = Cli::parse();
 
-    match &args.command {
-        Commands::Add { message } => {
-            println!("{:?}", message)
+    match &args.subcmd {
+        Subcommands::Add { message, date } => {
+            let task = Task::new(message, date);
+            println!("Lembrete adicionado: '{} em {}'", task.message, task.date)
         }
-        _ => println!("{},{}", task.date, task.message),
+        _ => println!("none of the above"),
     }
 }
