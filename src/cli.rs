@@ -12,7 +12,7 @@ pub struct Cli {
 pub enum Subcommands {
     Add { message: String, date: String },
     Show { id: u32 },
-    Update { id: u32 },
+    Update { id: u32, new_message: String, new_date: String },
     Delete { id: u32 },
     List,
 }

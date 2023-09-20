@@ -1,5 +1,5 @@
 [package]
-name = "honestly_i_want_to_give_up"
+name = "rusty-reminder"
 version = "0.1.0"
 edition = "2021"
 

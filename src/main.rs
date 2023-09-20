@@ -25,6 +25,17 @@ fn main() {
             let task = Task::new(message, date);
             println!("Lembrete adicionado: '{} em {}'", task.message, task.date)
         }
-        _ => println!("none of the above"),
+        Subcommands::Show { id } => {
+            println!("Lembrete #{}", id)
+        }
+        Subcommands::Update { id, new_message, new_date } => {
+            println!("Atualizando lembrete #{} com mensagem '{}' e data '{}'", id, new_message, new_date)
+        }
+        Subcommands::Delete { id } => {
+            println!("Deletando lembrete #{}", id)
+        }
+        Subcommands::List => {
+            println!("Lista de lembretes")
+        }
     }
 }
