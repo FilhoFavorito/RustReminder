@@ -1,41 +1,42 @@
 mod cli;
 //use chrono::NaiveDateTime;
 use clap::Parser;
-use cli::{Cli, Subcommands};
-
-#[derive(Debug)]
-struct Task {
-    message: String,
-    date: String,
-}
-impl Task {
-    fn new(message: &str, date: &str) -> Self {
-        Self {
-            message: String::from(message),
-            date: String::from(date),
-        }
-    }
-}
+use cli::{Cli, Subcommands, AddTask, ShowTask, UpdateTask, DeleteTask};
 
 fn main() {
     let args = Cli::parse();
 
     match &args.subcmd {
-        Subcommands::Add { message, date } => {
-            let task = Task::new(message, date);
-            println!("Lembrete adicionado: '{} em {}'", task.message, task.date)
+        Subcommands::Add(AddTask) => {
+            println!("Lembrete: {:?}", AddTask)
         }
-        Subcommands::Show { id } => {
-            println!("Lembrete #{}", id)
+        Subcommands::Show(ShowTask) => {
+            println!("Lembrete #{:?}", ShowTask)
         }
-        Subcommands::Update { id, new_message, new_date } => {
-            println!("Atualizando lembrete #{} com mensagem '{}' e data '{}'", id, new_message, new_date)
+        Subcommands::Update(UpdateTask) => {
+            println!("Atualizando lembrete #{:?}", UpdateTask)
         }
-        Subcommands::Delete { id } => {
-            println!("Deletando lembrete #{}", id)
+        Subcommands::Delete(DeleteTask) => {
+            println!("Deletando lembrete #{:?}", DeleteTask)
         }
         Subcommands::List => {
             println!("Lista de lembretes")
         }
     }
+}
+
+pub fn update_task(id: u32) {
+
+}
+
+pub fn show_task(id: u32) {
+
+}
+
+pub fn show_all_tasks() {
+
+}
+
+pub fn delete_task(id: u32){
+
 }
